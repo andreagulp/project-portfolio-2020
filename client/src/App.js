@@ -1,47 +1,26 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
-import logo from "./logo.svg";
-import "./App.css";
+import React from "react";
+import { withStyles } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Header from "./components/Header";
+import EmployeesList from "./pages/EmployeesList";
 
-const App = () => {
-  const [activeUser, setActiveUser] = useState(null);
+const styles = theme => ({
+  root: {
+    flexGrow: 1
+  }
+});
 
-  useEffect(() => {
-    axios
-      .get("/api/current_user")
-      // .then(response => console.log(response));
-      .then(response => setActiveUser(response.data.name));
-  });
-
+const App = ({ classes }) => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <div>
-          {!activeUser ? (
-            <a className="App-link" href="/auth/google">
-              Sign in
-            </a>
-          ) : (
-            <a className="App-link" href="/api/logout">
-              Log Out
-            </a>
-          )}
-        </div>
-        <a
-          className="App-link"
-          href="/api/current_user"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Current User - {activeUser}
-        </a>
-      </header>
+    <div className={classes.root}>
+      <Grid container spacing={24}>
+        <Grid item xs={12}>
+          <Header />
+        </Grid>
+        <EmployeesList />
+      </Grid>
     </div>
   );
 };
 
-export default App;
+export default withStyles(styles)(App);
