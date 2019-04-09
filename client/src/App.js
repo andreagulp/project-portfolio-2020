@@ -2,7 +2,6 @@ import React from "react";
 import { withStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 import Header from "./components/Header";
-import EmployeesList from "./pages/EmployeesList";
 
 const styles = theme => ({
   root: {
@@ -17,7 +16,6 @@ const App = ({ classes }) => {
         <Grid item xs={12}>
           <Header />
         </Grid>
-        <EmployeesList />
       </Grid>
     </div>
   );

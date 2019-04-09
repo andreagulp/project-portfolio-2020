@@ -42,7 +42,7 @@ const Header = ({ classes }) => {
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" color="inherit" className={classes.grow}>
-            ERM
+            Project Portfolio
           </Typography>
           <Login />
         </Toolbar>

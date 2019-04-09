@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from "react";
 import Button from "@material-ui/core/Button";
-import axios from "axios";
 import Avatar from "@material-ui/core/Avatar";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { withStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
+import { connect } from "react-redux";
+import { bindActionCreators, compose } from "redux";
+
+import { fetchUser } from "../actions/user_action";
 
 const styles = {
   avatar: {
@@ -17,8 +20,7 @@ const styles = {
   }
 };
 
-const Login = ({ classes }) => {
-  const [activeUser, setActiveUser] = useState({});
+const Login = ({ classes, fetchUser, activeUser }) => {
   const [anchorEl, setAnchorEl] = useState(null);
 
   const handleClick = e => {
@@ -30,11 +32,8 @@ const Login = ({ classes }) => {
   };
 
   useEffect(() => {
-    axios
-      .get("/api/current_user")
-      // .then(response => console.log(response));
-      .then(response => setActiveUser(response.data));
-  });
+    fetchUser();
+  }, []);
 
   return (
     <div>
@@ -80,4 +79,16 @@ const Login = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(Login);
+const mapStateToProps = state => {
+  return { activeUser: state.user };
+};
+const mapDispatchToProps = dispatch =>
+  bindActionCreators({ fetchUser }, dispatch);
+
+export default compose(
+  withStyles(styles),
+  connect(
+    mapStateToProps,
+    mapDispatchToProps
+  )
+)(Login);
