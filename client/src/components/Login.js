@@ -5,8 +5,6 @@ import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
 import { makeStyles } from "@material-ui/core/styles";
 import IconButton from "@material-ui/core/IconButton";
-import { connect } from "react-redux";
-import { bindActionCreators } from "redux";
 
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
@@ -23,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Login = ({ fetchUser }) => {
+const Login = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = useState(null);
   const dispatch = useDispatch();
@@ -39,7 +37,7 @@ const Login = ({ fetchUser }) => {
 
   useEffect(() => {
     dispatch(fetchUser());
-  }, [dispatch, fetchUser]);
+  }, [dispatch]);
 
   return (
     <div>
@@ -85,13 +83,4 @@ const Login = ({ fetchUser }) => {
   );
 };
 
-// const mapStateToProps = state => {
-//   return { user: state.user };
-// };
-const mapDispatchToProps = dispatch =>
-  bindActionCreators({ fetchUser }, dispatch);
-
-export default connect(
-  null,
-  mapDispatchToProps
-)(Login);
+export default Login;
