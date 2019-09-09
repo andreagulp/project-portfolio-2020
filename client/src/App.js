@@ -12,7 +12,7 @@ const styles = theme => ({
 const App = ({ classes }) => {
   return (
     <div className={classes.root}>
-      <Grid container spacing={24}>
+      <Grid container spacing={5}>
         <Grid item xs={12}>
           <Header />
         </Grid>

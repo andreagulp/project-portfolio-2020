@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
@@ -9,20 +9,20 @@ import Login from "./Login";
 
 import Navigation from "./Navigation";
 
-const styles = {
+const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1
   },
-  grow: {
-    flexGrow: 1
-  },
   menuButton: {
-    marginLeft: -12,
-    marginRight: 20
+    marginRight: theme.spacing(2)
+  },
+  title: {
+    flexGrow: 1
   }
-};
+}));
 
-const Header = ({ classes }) => {
+const Header = () => {
+  const classes = useStyles();
   const [openNav, setOpenNav] = useState(false);
 
   const toggleDrawer = () => {
@@ -34,6 +34,7 @@ const Header = ({ classes }) => {
       <AppBar position="static">
         <Toolbar>
           <IconButton
+            edge="start"
             className={classes.menuButton}
             color="inherit"
             aria-label="Menu"
@@ -41,7 +42,7 @@ const Header = ({ classes }) => {
           >
             <MenuIcon />
           </IconButton>
-          <Typography variant="h6" color="inherit" className={classes.grow}>
+          <Typography variant="h6" color="inherit" className={classes.title}>
             Project Portfolio
           </Typography>
           <Login />
@@ -52,4 +53,4 @@ const Header = ({ classes }) => {
   );
 };
 
-export default withStyles(styles)(Header);
+export default Header;

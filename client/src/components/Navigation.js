@@ -1,5 +1,6 @@
 import React from "react";
-import { withStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
+
 import Drawer from "@material-ui/core/Drawer";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -11,14 +12,14 @@ import SendIcon from "@material-ui/icons/Send";
 import PhotoCamera from "@material-ui/icons/PhotoCamera";
 // import { Link } from "react-router-dom";
 
-const styles = {
+const useStyles = makeStyles(theme => ({
   list: {
     width: 250
   },
   fullList: {
     width: "auto"
   }
-};
+}));
 
 const menuConfig = [
   {
@@ -43,7 +44,8 @@ const menuConfig = [
   }
 ];
 
-const Navigation = ({ openNav, toggleDrawer, classes }) => {
+const Navigation = ({ openNav, toggleDrawer }) => {
+  const classes = useStyles();
   const sideList = (
     <div className={classes.list}>
       <List>
@@ -75,4 +77,4 @@ const Navigation = ({ openNav, toggleDrawer, classes }) => {
   );
 };
 
-export default withStyles(styles)(Navigation);
+export default Navigation;
