@@ -11,15 +11,16 @@ import MyProfile from "./pages/MyProfile";
 import Employees from "./pages/Employees";
 import Teams from "./pages/Teams";
 import Projects from "./pages/Projects";
+import ProjectCreate from "./pages/ProjectCreate";
 
 const styles = theme => ({
-  root: {
-    flexGrow: 1
-  }
+  // root: {
+  //   // flexGrow: 1
+  // },
   // content: {
-  //   flexGrow: 1,
-  //   height: "100vh",
-  //   overflow: "auto"
+  //   flexGrow: 1
+  //   // height: "100vh"
+  //   // overflow: "auto"
   // }
 });
 
@@ -33,6 +34,7 @@ const App = ({ classes }) => {
         <Container className={classes.container}>
           <Grid container spacing={3}>
             <Switch>
+              <Route path="/projects/create" component={ProjectCreate} />
               <Route path="/myprofile" component={MyProfile} />
               <Route path="/employees" component={Employees} />
               <Route path="/teams" component={Teams} />
