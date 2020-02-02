@@ -45,7 +45,6 @@ const Header = () => {
           <Typography variant="h6" color="inherit" className={classes.title}>
             Project Portfolio
           </Typography>
-          <Login />
         </Toolbar>
       </AppBar>
       <Navigation openNav={openNav} toggleDrawer={toggleDrawer} />

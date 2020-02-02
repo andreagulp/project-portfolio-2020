@@ -12,6 +12,7 @@ import AccountCircleTwoToneIcon from "@material-ui/icons/AccountCircleTwoTone";
 import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
 import GroupWorkTwoToneIcon from "@material-ui/icons/GroupWorkTwoTone";
 import GroupTwoToneIcon from "@material-ui/icons/GroupTwoTone";
+import AccountTreeIcon from "@material-ui/icons/AccountTree";
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -27,6 +28,11 @@ const menuConfig = [
     url: "/",
     icon: <HomeTwoToneIcon />,
     text: "Home"
+  },
+  {
+    url: "/projects",
+    icon: <AccountTreeIcon />,
+    text: "Projects"
   },
   {
     url: "/myprofile",
