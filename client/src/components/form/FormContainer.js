@@ -4,6 +4,7 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { addProject } from "../../actions/project_action";
@@ -21,7 +22,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function FormContainer() {
+function FormContainer({ history }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -52,14 +53,20 @@ function FormContainer() {
   });
 
   const submitProject = () => {
+    let marketBenefits = stateTable.data.map(item => {
+      return {
+        ...item,
+        name: stateTable.columns[0].lookup[item.market]
+      };
+    });
+
     let newProject = {
       ...values,
-      benefitsByMarket: [...stateTable.data]
+      benefitsByMarket: marketBenefits
     };
-
     dispatch(addProject(newProject));
-
-    console.log(newProject);
+    history.push("/projects");
+    // console.log(marketBenefits);
   };
 
   return (
@@ -156,4 +163,4 @@ function FormContainer() {
   );
 }
 
-export default FormContainer;
+export default withRouter(FormContainer);

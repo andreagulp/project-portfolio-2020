@@ -35,10 +35,10 @@ const App = ({ classes }) => {
           <Grid container spacing={3}>
             <Switch>
               <Route path="/projects/create" component={ProjectCreate} />
+              <Route path="/projects" component={Projects} />
               <Route path="/myprofile" component={MyProfile} />
               <Route path="/employees" component={Employees} />
               <Route path="/teams" component={Teams} />
-              <Route path="/projects" component={Projects} />
               <Route path="/" component={Home} />
             </Switch>
           </Grid>
