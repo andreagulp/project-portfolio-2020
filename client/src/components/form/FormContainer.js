@@ -4,6 +4,9 @@ import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
+import { useDispatch } from "react-redux";
+
+import { addProject } from "../../actions/project_action";
 import InputField from "./InputField";
 import useForm from "./useForm";
 import ProjectFinancial from "./ProjectFinancial";
@@ -20,6 +23,8 @@ const useStyles = makeStyles(theme => ({
 
 function FormContainer() {
   const classes = useStyles();
+  const dispatch = useDispatch();
+
   const initialState = {
     title: "",
     description: "",
@@ -51,6 +56,8 @@ function FormContainer() {
       ...values,
       benefitsByMarket: [...stateTable.data]
     };
+
+    dispatch(addProject(newProject));
 
     console.log(newProject);
   };
