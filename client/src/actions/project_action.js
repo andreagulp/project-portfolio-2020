@@ -1,21 +1,21 @@
 import axios from "axios";
-import { ADD_PROJECT } from "./types";
+import { ADD_PROJECT, FETCH_PROJECTS } from "./types";
 
 export const fetchProjects = () => {
-  // const request = axios
-  //   .get(`/api/projects`)
-  //   .then(response => {
-  //     return response.data;
-  //   })
-  //   .catch(error => {
-  //     console.log(error);
-  //     return error;
-  //   });
+  const request = axios
+    .get(`/api/projects`)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log(error);
+      return error;
+    });
 
-  // return {
-  //   type: FETCH_PROJECTS,
-  //   payload: request
-  // };
+  return {
+    type: FETCH_PROJECTS,
+    payload: request
+  };
 
   return;
 };

@@ -11,4 +11,18 @@ module.exports = app => {
     project.save();
     res.send("post req done");
   });
+
+  app.get("/api/projects", (req, res, next) => {
+    Project.find()
+      .exec()
+      .then(docs => {
+        res.status(200).json(docs);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
 };
