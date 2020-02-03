@@ -3,6 +3,12 @@ import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
+import "date-fns";
+import DateFnsUtils from "@date-io/date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker
+} from "@material-ui/pickers";
 
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
@@ -25,6 +31,13 @@ const useStyles = makeStyles(theme => ({
 function FormContainer({ history }) {
   const classes = useStyles();
   const dispatch = useDispatch();
+  // const [selectedDate, setSelectedDate] = React.useState(
+  //   new Date("2014-08-18T21:11:54")
+  // );
+
+  // const handleDateChange = date => {
+  //   setSelectedDate(date);
+  // };
 
   const initialState = {
     title: "",
@@ -32,10 +45,13 @@ function FormContainer({ history }) {
     issueid: "",
     projectManager: "",
     developer: "",
-    brand: ""
+    brand: "",
+    team: ""
   };
 
-  const { values, handleFieldChange, handleSubmit } = useForm(initialState);
+  const { values, selectedDate, handleFieldChange, handleDateChange } = useForm(
+    initialState
+  );
 
   const [stateTable, setStateTable] = React.useState({
     columns: [
@@ -55,14 +71,15 @@ function FormContainer({ history }) {
   const submitProject = () => {
     let marketBenefits = stateTable.data.map(item => {
       return {
-        ...item,
-        name: stateTable.columns[0].lookup[item.market]
+        name: stateTable.columns[0].lookup[item.market],
+        hours: parseInt(item.hours, 10)
       };
     });
 
     let newProject = {
       ...values,
-      benefitsByMarket: marketBenefits
+      benefitsByMarket: marketBenefits,
+      benefitsFullYear: marketBenefits.reduce((a, b) => a.hours + b.hours)
     };
     dispatch(addProject(newProject));
     history.push("/projects");
@@ -137,6 +154,31 @@ function FormContainer({ history }) {
               handleInputChange={handleFieldChange}
             />
           </Grid>
+          <Grid item xs={12} sm={6}>
+            <InputField
+              label="Team"
+              name="team"
+              isError={false}
+              helperText={""}
+              values={values.team}
+              handleInputChange={handleFieldChange}
+            />
+          </Grid>
+          <Grid item xs={12} sm={6}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                margin="normal"
+                id="date-picker-dialog"
+                label="Estimated MVP Date"
+                format="dd/MMM/yyyy"
+                value={selectedDate}
+                onChange={handleDateChange}
+                KeyboardButtonProps={{
+                  "aria-label": "change date"
+                }}
+              />
+            </MuiPickersUtilsProvider>
+          </Grid>
         </Grid>
       </Grid>
 
@@ -150,6 +192,7 @@ function FormContainer({ history }) {
             setStateTable={setStateTable}
           />
         </Grid>
+
         <Button
           onClick={submitProject}
           variant="outlined"

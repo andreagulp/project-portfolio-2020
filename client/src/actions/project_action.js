@@ -16,11 +16,11 @@ export const fetchProjects = () => {
     type: FETCH_PROJECTS,
     payload: request
   };
-
-  return;
 };
 
 export const addProject = project => {
+  console.log("project from action", project);
+
   return dispatch => {
     const request = axios.post("/api/newProject", project).then(response => {
       return response;

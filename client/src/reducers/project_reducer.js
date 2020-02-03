@@ -8,7 +8,12 @@ const initialState = {
   projectManager: "",
   developer: "",
   brand: "",
-  benefitsByMarket: []
+  benefitsByMarket: [
+    {
+      name: "",
+      hours: 0
+    }
+  ]
 };
 
 export default function(state = initialState, action) {

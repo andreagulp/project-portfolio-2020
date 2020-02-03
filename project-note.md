@@ -1,2 +1,5 @@
 add fields:
-"expected MVP Date"
+benefitsFullYear: Number,
+estimatedMvpDate: Date,
+deployementDate: Date
+team: String,
