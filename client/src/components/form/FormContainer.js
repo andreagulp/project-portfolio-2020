@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -12,11 +12,14 @@ import {
 
 import { withRouter } from "react-router-dom";
 import { useDispatch } from "react-redux";
+import uuidv4 from "uuid/v4";
 
 import { addProject } from "../../actions/project_action";
 import InputField from "./InputField";
 import useForm from "./useForm";
 import ProjectFinancial from "./ProjectFinancial";
+import SelectField from "./SelectField";
+import { brand, employees } from "../../assets/formConfig";
 
 const useStyles = makeStyles(theme => ({
   headerName: {
@@ -31,13 +34,6 @@ const useStyles = makeStyles(theme => ({
 function FormContainer({ history }) {
   const classes = useStyles();
   const dispatch = useDispatch();
-  // const [selectedDate, setSelectedDate] = React.useState(
-  //   new Date("2014-08-18T21:11:54")
-  // );
-
-  // const handleDateChange = date => {
-  //   setSelectedDate(date);
-  // };
 
   const initialState = {
     title: "",
@@ -58,13 +54,34 @@ function FormContainer({ history }) {
       {
         title: "Market",
         field: "market",
-        lookup: { 1: "DACH", 2: "France", 3: "Italy", 4: "SPGI" }
+        lookup: {
+          1: "AR",
+          2: "Benelux",
+          3: "BPM",
+          4: "CEE",
+          5: "DACH",
+          6: "France",
+          7: "Italy",
+          8: "MEA",
+          9: "Nordics",
+          10: "SPGI",
+          11: "UKI"
+        }
       },
       { title: "Hours", field: "hours", type: "numeric" }
     ],
     data: [
-      { market: 1, hours: 1000 },
-      { market: 2, hours: 1300 }
+      { market: 1, hours: 0 },
+      { market: 2, hours: 0 },
+      { market: 3, hours: 0 },
+      { market: 4, hours: 0 },
+      { market: 5, hours: 0 },
+      { market: 6, hours: 0 },
+      { market: 7, hours: 0 },
+      { market: 8, hours: 0 },
+      { market: 9, hours: 0 },
+      { market: 10, hours: 0 },
+      { market: 11, hours: 0 }
     ]
   });
 
@@ -78,6 +95,7 @@ function FormContainer({ history }) {
 
     let newProject = {
       ...values,
+      estimatedMvpDate: selectedDate,
       benefitsByMarket: marketBenefits,
       benefitsFullYear: marketBenefits.reduce((a, b) => a.hours + b.hours)
     };
@@ -85,6 +103,34 @@ function FormContainer({ history }) {
     history.push("/projects");
     // console.log(marketBenefits);
   };
+
+  // Start build items for dropdown menu teams, project ,manager list, devs list, brand
+  const teams = [...new Set(employees.map(x => x.team))].map(y => {
+    return {
+      _id: uuidv4(),
+      name: y
+    };
+  });
+
+  const projectManagersRef = employees.filter(x => x.role === "PM");
+  const projectManagers = [
+    ...new Set(projectManagersRef.map(x => x.fullName))
+  ].map(y => {
+    return {
+      _id: uuidv4(),
+      name: y
+    };
+  });
+
+  const devsRef = employees.filter(x => x.role === "DEV");
+  const devs = [...new Set(devsRef.map(x => x.fullName))].map(y => {
+    return {
+      _id: uuidv4(),
+      name: y
+    };
+  });
+
+  console.log("projectManagers", projectManagers);
 
   return (
     <Grid container spacing={3}>
@@ -100,7 +146,7 @@ function FormContainer({ history }) {
               isError={false}
               helperText={""}
               values={values.title}
-              handleInputChange={handleFieldChange}
+              handleFieldChange={handleFieldChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
@@ -110,7 +156,7 @@ function FormContainer({ history }) {
               isError={false}
               helperText={""}
               values={values.issueid}
-              handleInputChange={handleFieldChange}
+              handleFieldChange={handleFieldChange}
             />
           </Grid>
           <Grid item xs={12}>
@@ -121,47 +167,43 @@ function FormContainer({ history }) {
               isError={false}
               helperText={""}
               values={values.description}
-              handleInputChange={handleFieldChange}
+              handleFieldChange={handleFieldChange}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <SelectField
+              handleFieldChange={handleFieldChange}
+              values={values.projectManager}
               label="Project Manager"
               name="projectManager"
-              isError={false}
-              helperText={""}
-              values={values.projectManager}
-              handleInputChange={handleFieldChange}
+              menuItems={projectManagers}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <SelectField
+              handleFieldChange={handleFieldChange}
+              values={values.developer}
               label="Developer"
               name="developer"
-              isError={false}
-              helperText={""}
-              values={values.developer}
-              handleInputChange={handleFieldChange}
+              menuItems={devs}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <SelectField
+              handleFieldChange={handleFieldChange}
+              values={values.brand}
               label="Brand"
               name="brand"
-              isError={false}
-              helperText={""}
-              values={values.brand}
-              handleInputChange={handleFieldChange}
+              menuItems={brand}
             />
           </Grid>
           <Grid item xs={12} sm={6}>
-            <InputField
+            <SelectField
+              handleFieldChange={handleFieldChange}
+              values={values.team}
               label="Team"
               name="team"
-              isError={false}
-              helperText={""}
-              values={values.team}
-              handleInputChange={handleFieldChange}
+              menuItems={teams}
             />
           </Grid>
           <Grid item xs={12} sm={6}>

@@ -8,7 +8,7 @@ function InputField({
   isError,
   helperText,
   values,
-  handleInputChange
+  handleFieldChange
 }) {
   return (
     <TextField
@@ -22,7 +22,7 @@ function InputField({
       error={isError}
       helperText={helperText}
       value={values}
-      onChange={handleInputChange}
+      onChange={handleFieldChange}
     />
   );
 }
