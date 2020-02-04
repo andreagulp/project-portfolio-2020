@@ -4,10 +4,10 @@ import MaterialTable from "material-table";
 function ProjectFinancial({ stateTable, setStateTable }) {
   return (
     <MaterialTable
-      title="Benefits by Market"
+      title="Benefits"
       columns={stateTable.columns}
       data={stateTable.data}
-      style={{ marginTop: 28 }}
+      style={{ marginTop: 28, width: "100%" }}
       editable={{
         onRowAdd: newData =>
           new Promise(resolve => {

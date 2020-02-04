@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
@@ -25,8 +25,11 @@ const useStyles = makeStyles(theme => ({
   headerName: {
     paddingTop: theme.spacing(5)
   },
+  headerFinancial: {
+    paddingTop: theme.spacing(2)
+  },
   button: {
-    margin: theme.spacing(5),
+    marginTop: theme.spacing(1),
     float: "right"
   }
 }));
@@ -85,6 +88,22 @@ function FormContainer({ history }) {
     ]
   });
 
+  const [totHours, setTotHours] = useState(0);
+
+  useEffect(() => {
+    let allMarketHours = stateTable.data.reduce((a, b) => {
+      // console.log("a: ", a);
+      // console.log("b: ", b.hours);
+
+      return parseInt(a) + parseInt(b.hours);
+    }, 0);
+
+    // console.log("totHours", totHours);
+    console.log("allMarketHours", allMarketHours);
+
+    setTotHours(allMarketHours);
+  }, [stateTable.data]);
+
   const submitProject = () => {
     let marketBenefits = stateTable.data.map(item => {
       return {
@@ -130,7 +149,7 @@ function FormContainer({ history }) {
     };
   });
 
-  console.log("projectManagers", projectManagers);
+  // console.log("projectManagers", projectManagers);
 
   return (
     <Grid container spacing={3}>
@@ -228,6 +247,7 @@ function FormContainer({ history }) {
         <Typography variant="h4" gutterBottom className={classes.headerName}>
           Project Financial
         </Typography>
+
         <Grid container spacing={3}>
           <ProjectFinancial
             stateTable={stateTable}
@@ -235,14 +255,25 @@ function FormContainer({ history }) {
           />
         </Grid>
 
-        <Button
-          onClick={submitProject}
-          variant="outlined"
-          color="primary"
-          className={classes.button}
-        >
-          Primary
-        </Button>
+        <div>
+          <Typography
+            variant="h5"
+            gutterBottom
+            className={classes.headerFinancial}
+          >
+            Total Hours = {totHours}
+          </Typography>
+        </div>
+        <div>
+          <Button
+            onClick={submitProject}
+            variant="outlined"
+            color="primary"
+            className={classes.button}
+          >
+            Add
+          </Button>
+        </div>
       </Grid>
     </Grid>
   );
