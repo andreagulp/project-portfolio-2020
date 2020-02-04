@@ -271,7 +271,7 @@ function FormContainer({ history }) {
             color="primary"
             className={classes.button}
           >
-            Add
+            Add Project
           </Button>
         </div>
       </Grid>

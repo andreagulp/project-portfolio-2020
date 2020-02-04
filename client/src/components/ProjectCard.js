@@ -10,7 +10,7 @@ import Grid from "@material-ui/core/Grid";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    minWidth: 275
+    // minWidth: 275
   },
   bullet: {
     display: "inline-block",
@@ -22,38 +22,45 @@ const useStyles = makeStyles(theme => ({
   },
   pos: {
     marginBottom: 12
+  },
+  description: {
+    width: 200
   }
 }));
 
 function ProjectCard({ project }) {
   const classes = useStyles();
-  const { title, description, brand } = project;
+  const { title, description, brand, team } = project;
 
   return (
     <Grid item xs={12} sm={6} md={4}>
       <Card className={classes.root}>
-        <CardContent>
+        <CardContent className={classes.card}>
           <Typography
             className={classes.title}
             color="textSecondary"
             gutterBottom
+            noWrap
           >
-            Word of the Day
+            {team}
           </Typography>
-          <Typography variant="h5" component="h2">
+          <Typography variant="h5" component="h2" noWrap>
             {title}
           </Typography>
           <Typography className={classes.pos} color="textSecondary">
-            adjective
+            {brand}
           </Typography>
-          <Typography variant="body2" component="p">
-            well meaning and kindly.
-            <br />
-            {'"a benevolent smile"'}
+          <Typography
+            variant="body2"
+            component="p"
+            className={classes.description}
+            noWrap={true}
+          >
+            {description}
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Learn More</Button>
+          <Button size="small">Open Project</Button>
         </CardActions>
       </Card>
     </Grid>
