@@ -12,6 +12,7 @@ import Employees from "./pages/Employees";
 import Teams from "./pages/Teams";
 import Projects from "./pages/Projects";
 import ProjectCreate from "./pages/ProjectCreate";
+import ProjectEdit from "./pages/ProjectEdit";
 
 const styles = theme => ({
   // root: {
@@ -34,6 +35,7 @@ const App = ({ classes }) => {
         <Container className={classes.container}>
           <Grid container spacing={3}>
             <Switch>
+              <Route path="/projects/:projectid" component={ProjectEdit} />
               <Route path="/projects/create" component={ProjectCreate} />
               <Route path="/projects" component={Projects} />
               <Route path="/myprofile" component={MyProfile} />

@@ -8,6 +8,8 @@ import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 
+import { NavLink } from "react-router-dom";
+
 const useStyles = makeStyles(theme => ({
   root: {
     // minWidth: 275
@@ -25,12 +27,15 @@ const useStyles = makeStyles(theme => ({
   },
   description: {
     width: 200
+  },
+  button: {
+    // textDecoration: "none"
   }
 }));
 
 function ProjectCard({ project }) {
   const classes = useStyles();
-  const { title, description, brand, team } = project;
+  const { title, description, brand, team, _id } = project;
 
   return (
     <Grid item xs={12} sm={6} md={4}>
@@ -60,7 +65,9 @@ function ProjectCard({ project }) {
           </Typography>
         </CardContent>
         <CardActions>
-          <Button size="small">Open Project</Button>
+          <Button size="small" className={classes.button}>
+            <NavLink to={`/projects/${_id}`}>Open Project</NavLink>
+          </Button>
         </CardActions>
       </Card>
     </Grid>
