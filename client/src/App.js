@@ -35,8 +35,12 @@ const App = ({ classes }) => {
         <Container className={classes.container}>
           <Grid container spacing={3}>
             <Switch>
-              <Route path="/projects/:projectid" component={ProjectEdit} />
               <Route path="/projects/create" component={ProjectCreate} />
+              <Route
+                exact
+                path="/projects/:projectid"
+                component={ProjectEdit}
+              />
               <Route path="/projects" component={Projects} />
               <Route path="/myprofile" component={MyProfile} />
               <Route path="/employees" component={Employees} />

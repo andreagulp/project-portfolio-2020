@@ -1,10 +1,10 @@
 import React from "react";
-import FormContainer from "../components/form/FormContainer";
+import FormContainerCreate from "../components/form/FormContainerCreate";
 
 function ProjectCreate() {
   return (
     <div>
-      <FormContainer />
+      <FormContainerCreate />
     </div>
   );
 }

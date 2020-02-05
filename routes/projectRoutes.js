@@ -12,6 +12,24 @@ module.exports = app => {
     res.send("post req done");
   });
 
+  app.get("/api/projects/:projectId", (req, res, next) => {
+    const id = req.params.projectId;
+    Project.findById(id)
+      .exec()
+      .then(doc => {
+        if (doc) {
+          res.status(200).json(doc);
+        } else {
+          res
+            .status(404)
+            .json({ message: "No valid entry found for provided ID" });
+        }
+      })
+      .catch(err => {
+        res.status(500).json({ error: err });
+      });
+  });
+
   app.get("/api/projects", (req, res, next) => {
     Project.find()
       .exec()

@@ -1,4 +1,4 @@
-import { ADD_PROJECT } from "../actions/types";
+import { ADD_PROJECT, FETCH_SINGLE_PROJECT } from "../actions/types";
 
 const initialState = {
   _id: "",
@@ -20,6 +20,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case ADD_PROJECT:
       return state;
+    case FETCH_SINGLE_PROJECT:
+      return action.payload;
     default:
       return state;
   }

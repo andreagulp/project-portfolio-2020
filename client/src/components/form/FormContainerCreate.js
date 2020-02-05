@@ -34,7 +34,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function FormContainer({ history }) {
+function FormContainerCreate({ history }) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -279,4 +279,4 @@ function FormContainer({ history }) {
   );
 }
 
-export default withRouter(FormContainer);
+export default withRouter(FormContainerCreate);
