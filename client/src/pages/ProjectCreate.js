@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 
 import Grid from "@material-ui/core/Grid";
-import Typography from "@material-ui/core/Typography";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
 
@@ -13,12 +12,6 @@ import ProjectFinancial from "../components/form/ProjectFinancial";
 import ProjectInfo from "../components/form/ProjectInfo";
 
 const useStyles = makeStyles(theme => ({
-  headerName: {
-    paddingTop: theme.spacing(5)
-  },
-  headerFinancial: {
-    paddingTop: theme.spacing(2)
-  },
   button: {
     marginTop: theme.spacing(1),
     float: "right"
@@ -108,42 +101,20 @@ function ProjectCreate({ history }) {
 
   return (
     <Grid container spacing={3}>
-      <Grid item xs={12} sm={6}>
-        <Typography variant="h4" gutterBottom className={classes.headerName}>
-          Project Info
-        </Typography>
-
-        <Grid container spacing={3}>
-          <ProjectInfo
-            values={values}
-            selectedDate={selectedDate}
-            handleFieldChange={handleFieldChange}
-            handleDateChange={handleDateChange}
-          />
-        </Grid>
-      </Grid>
+      <ProjectInfo
+        values={values}
+        selectedDate={selectedDate}
+        handleFieldChange={handleFieldChange}
+        handleDateChange={handleDateChange}
+      />
 
       <Grid item xs={12} sm={6}>
-        <Typography variant="h4" gutterBottom className={classes.headerName}>
-          Project Financial
-        </Typography>
+        <ProjectFinancial
+          stateTable={stateTable}
+          setStateTable={setStateTable}
+          totHours={totHours}
+        />
 
-        <Grid container spacing={3}>
-          <ProjectFinancial
-            stateTable={stateTable}
-            setStateTable={setStateTable}
-          />
-        </Grid>
-
-        <div>
-          <Typography
-            variant="h5"
-            gutterBottom
-            className={classes.headerFinancial}
-          >
-            Total Hours = {totHours}
-          </Typography>
-        </div>
         <div>
           <Button
             onClick={submitProject}

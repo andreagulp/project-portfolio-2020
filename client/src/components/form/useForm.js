@@ -18,6 +18,7 @@ function useForm(initialState) {
 
   return {
     values,
+    setValue,
     selectedDate,
     handleFieldChange,
     handleDateChange
