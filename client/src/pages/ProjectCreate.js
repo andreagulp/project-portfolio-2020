@@ -48,7 +48,13 @@ function ProjectCreate({ history }) {
     newMarketHours,
     benefitsByMkt,
     handleFieldMktHoursChange,
-    addBenefit
+    addBenefit,
+    removeBenefit,
+    editBenefit,
+    totHours,
+    editedBenefit,
+    handleEditableBenefitChange,
+    updateBenefit
   } = useFormBenefits(initialMarketHours);
 
   const handleAddBenefit = e => {
@@ -60,14 +66,20 @@ function ProjectCreate({ history }) {
     addBenefit(mktBenefit);
   };
 
-  const [totHours, setTotHours] = useState(0);
+  const handleRemoveBenefit = (e, mktBenefitId) => {
+    e.preventDefault();
+    removeBenefit(mktBenefitId);
+  };
 
-  useEffect(() => {
-    let allMarketHours = benefitsByMkt.reduce((a, b) => {
-      return parseInt(a) + parseInt(b.hours);
-    }, 0);
-    setTotHours(allMarketHours);
-  }, [benefitsByMkt]);
+  const handleEditBenefit = mktBenefit => {
+    editBenefit(mktBenefit);
+  };
+
+  const handleUpdateBenefits = () => {
+    console.log("editedBenefit", editedBenefit);
+
+    updateBenefit();
+  };
 
   const submitProject = () => {
     const newProject = {
@@ -103,7 +115,12 @@ function ProjectCreate({ history }) {
           newMarketHours={newMarketHours}
           benefitsByMkt={benefitsByMkt}
           addBenefit={handleAddBenefit}
+          handleRemoveBenefit={handleRemoveBenefit}
+          handleEditBenefit={handleEditBenefit}
           totHours={totHours}
+          editedBenefit={editedBenefit}
+          handleEditableBenefitChange={handleEditableBenefitChange}
+          handleUpdateBenefits={handleUpdateBenefits}
         />
 
         <div>

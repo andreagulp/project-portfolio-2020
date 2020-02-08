@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,6 +20,7 @@ import Avatar from "@material-ui/core/Avatar";
 import { markets } from "../../assets/formConfig";
 import SelectField from "./SelectField";
 import InputField from "./InputField";
+import EditBenefitDialog from "./EditBenefitDialog";
 
 const useStyles = makeStyles(theme => ({
   headerName: {
@@ -44,10 +45,26 @@ function ProjectFinancial({
   handleFieldMktHoursChange,
   newMarketHours,
   addBenefit,
+  handleRemoveBenefit,
+  handleEditBenefit,
   benefitsByMkt,
-  totHours
+  totHours,
+  editedBenefit,
+  handleEditableBenefitChange,
+  handleUpdateBenefits
 }) {
   const classes = useStyles();
+  const [openDialog, setOpenDialog] = useState(false);
+
+  const handleDialogOpen = mkt => {
+    handleEditBenefit(mkt);
+    setOpenDialog(true);
+  };
+
+  const handleDialogClose = () => {
+    handleUpdateBenefits();
+    setOpenDialog(false);
+  };
 
   console.log("benefitsByMkt", benefitsByMkt);
 
@@ -68,7 +85,6 @@ function ProjectFinancial({
             label="Market"
             name="name"
             menuItems={markets}
-            // fullWidth
           />
         </Grid>
         <Grid item xs={4} sm={4}>
@@ -102,10 +118,18 @@ function ProjectFinancial({
                 <ListItem key={mkt._id}>
                   <ListItemText primary={`${mkt.name} | ${mkt.hours} hs`} />
                   <ListItemSecondaryAction>
-                    <IconButton edge="end" aria-label="edit">
+                    <IconButton
+                      edge="end"
+                      aria-label="edit"
+                      onClick={() => handleDialogOpen(mkt)}
+                    >
                       <EditIcon />
                     </IconButton>
-                    <IconButton edge="end" aria-label="delete">
+                    <IconButton
+                      edge="end"
+                      aria-label="delete"
+                      onClick={e => handleRemoveBenefit(e, mkt._id)}
+                    >
                       <DeleteIcon />
                     </IconButton>
                   </ListItemSecondaryAction>
@@ -127,6 +151,14 @@ function ProjectFinancial({
       </Grid>
       {/* </Grid> */}
       <Divider />
+
+      <EditBenefitDialog
+        openDialog={openDialog}
+        handleDialogClose={handleDialogClose}
+        editedBenefit={editedBenefit}
+        handleEditableBenefitChange={handleEditableBenefitChange}
+        handleUpdateBenefits={handleUpdateBenefits}
+      />
     </>
   );
 }
