@@ -1,8 +1,25 @@
 import React from "react";
-import MaterialTable from "material-table";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
+import Paper from "@material-ui/core/Paper";
+import TextField from "@material-ui/core/TextField";
+import Button from "@material-ui/core/Button";
+import List from "@material-ui/core/List";
+import ListItem from "@material-ui/core/ListItem";
+import ListItemSecondaryAction from "@material-ui/core/ListItemSecondaryAction";
+import ListItemText from "@material-ui/core/ListItemText";
+import IconButton from "@material-ui/core/IconButton";
+import DeleteIcon from "@material-ui/icons/Delete";
+import EditIcon from "@material-ui/icons/Edit";
+import Divider from "@material-ui/core/Divider";
+import FunctionsIcon from "@material-ui/icons/Functions";
+import ListItemAvatar from "@material-ui/core/ListItemAvatar";
+import Avatar from "@material-ui/core/Avatar";
+
+import { markets } from "../../assets/formConfig";
+import SelectField from "./SelectField";
+import InputField from "./InputField";
 
 const useStyles = makeStyles(theme => ({
   headerName: {
@@ -10,71 +27,106 @@ const useStyles = makeStyles(theme => ({
   },
   headerFinancial: {
     paddingTop: theme.spacing(2)
+  },
+  // paper: {
+  //   // padding: theme.spacing(1)
+  // },
+  button: {
+    // marginTop: theme.spacing(2)
+    float: "right"
+  },
+  divider: {
+    backgroundColor: "white"
   }
 }));
 
-function ProjectFinancial({ stateTable, setStateTable, totHours }) {
+function ProjectFinancial({
+  handleFieldMktHoursChange,
+  newMarketHours,
+  addBenefit,
+  benefitsByMkt,
+  totHours
+}) {
   const classes = useStyles();
+
+  console.log("benefitsByMkt", benefitsByMkt);
 
   return (
     <>
-      <Grid container spacing={3}>
+      {/* <Grid container spacing={3}> */}
+      <Grid item xs={12} sm={12}>
         <Typography variant="h4" gutterBottom className={classes.headerName}>
           Project Financial
         </Typography>
-        <MaterialTable
-          title="Benefits"
-          columns={stateTable.columns}
-          data={stateTable.data}
-          style={{ marginTop: 28, width: "100%" }}
-          editable={{
-            onRowAdd: newData =>
-              new Promise(resolve => {
-                setTimeout(() => {
-                  resolve();
-                  setStateTable(prevState => {
-                    const data = [...prevState.data];
-                    data.push(newData);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise(resolve => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    setStateTable(prevState => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }),
-            onRowDelete: oldData =>
-              new Promise(resolve => {
-                setTimeout(() => {
-                  resolve();
-                  setStateTable(prevState => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              })
-          }}
-        />
       </Grid>
-      <div>
-        <Typography
-          variant="h5"
-          gutterBottom
-          className={classes.headerFinancial}
-        >
-          Total Hours = {totHours}
-        </Typography>
-      </div>
+
+      <Grid container spacing={3}>
+        <Grid item xs={8} sm={8}>
+          <SelectField
+            handleFieldChange={handleFieldMktHoursChange}
+            values={newMarketHours.name}
+            label="Market"
+            name="name"
+            menuItems={markets}
+            // fullWidth
+          />
+        </Grid>
+        <Grid item xs={4} sm={4}>
+          <form onSubmit={addBenefit}>
+            <InputField
+              name="hours"
+              label="Hours"
+              placeholder="0"
+              type="number"
+              values={newMarketHours.hours}
+              handleFieldChange={handleFieldMktHoursChange}
+              onKeyDown={addBenefit}
+            />
+          </form>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button}
+            onClick={addBenefit}
+          >
+            ADD BENEFITS
+          </Button>
+        </Grid>
+        <Grid item xs={12} sm={12}>
+          <Divider />
+          <List dense={true}>
+            {benefitsByMkt.map(mkt => {
+              return (
+                <ListItem key={mkt._id}>
+                  <ListItemText primary={`${mkt.name} | ${mkt.hours} hs`} />
+                  <ListItemSecondaryAction>
+                    <IconButton edge="end" aria-label="edit">
+                      <EditIcon />
+                    </IconButton>
+                    <IconButton edge="end" aria-label="delete">
+                      <DeleteIcon />
+                    </IconButton>
+                  </ListItemSecondaryAction>
+                </ListItem>
+              );
+            })}
+            <Divider />
+
+            <ListItem>
+              <ListItemAvatar>
+                <Avatar>
+                  <FunctionsIcon color="primary" />
+                </Avatar>
+              </ListItemAvatar>
+              <ListItemText primary={`${totHours} Total hours`} />
+            </ListItem>
+          </List>
+        </Grid>
+      </Grid>
+      {/* </Grid> */}
+      <Divider />
     </>
   );
 }

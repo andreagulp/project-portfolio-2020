@@ -53,3 +53,57 @@ export const brand = [
     name: "SW"
   }
 ];
+
+export const markets = [
+  {
+    _id: "edf001",
+    name: "FRANCE"
+  },
+  {
+    _id: "edf002",
+    name: "DACH"
+  },
+  {
+    _id: "edf003",
+    name: "ITALY"
+  },
+  {
+    _id: "edf004",
+    name: "SPGI"
+  },
+  {
+    _id: "edf005",
+    name: "BENELUX"
+  }
+];
+
+export const projectStatuses = [
+  {
+    _id: "001",
+    name: "New"
+  },
+  {
+    _id: "002",
+    name: "Backlog"
+  },
+  {
+    _id: "003",
+    name: "Gate 1"
+  },
+  {
+    _id: "004",
+    name: "Discovery"
+  },
+  {
+    _id: "005",
+    name: "Iteration backlog"
+  },
+  {
+    _id: "006",
+    name: "In Progress"
+  },
+  {
+    _id: "007",
+    name: "Completed"
+  }
+];

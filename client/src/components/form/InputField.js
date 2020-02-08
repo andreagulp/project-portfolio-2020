@@ -4,6 +4,7 @@ import TextField from "@material-ui/core/TextField";
 function InputField({
   name,
   label,
+  type,
   multiline,
   isError,
   helperText,
@@ -14,6 +15,7 @@ function InputField({
     <TextField
       name={name}
       label={label}
+      type={type}
       variant="outlined"
       margin="normal"
       multiline={multiline}

@@ -13,18 +13,11 @@ import uuidv4 from "uuid/v4";
 
 import InputField from "./InputField";
 import SelectField from "./SelectField";
-import { brand, employees } from "../../assets/formConfig";
+import { brand, employees, projectStatuses } from "../../assets/formConfig";
 
 const useStyles = makeStyles(theme => ({
   headerName: {
     paddingTop: theme.spacing(5)
-  },
-  headerFinancial: {
-    paddingTop: theme.spacing(2)
-  },
-  button: {
-    marginTop: theme.spacing(1),
-    float: "right"
   }
 }));
 
@@ -63,9 +56,12 @@ function ProjectInfo({
 
   return (
     <Grid item xs={12} sm={6}>
-      <Typography variant="h4" gutterBottom className={classes.headerName}>
-        Project Info
-      </Typography>
+      <Grid item xs={12} sm={12}>
+        <Typography variant="h4" gutterBottom className={classes.headerName}>
+          Project Info
+        </Typography>
+      </Grid>
+
       <Grid container spacing={3}>
         <Grid item xs={12} sm={6}>
           <InputField
@@ -138,16 +134,27 @@ function ProjectInfo({
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardDatePicker
               margin="normal"
+              name="estimatedMvpDate"
               id="date-picker-dialog"
               label="Estimated MVP Date"
               format="dd/MMM/yyyy"
               value={selectedDate}
               onChange={handleDateChange}
+              fullWidth
               KeyboardButtonProps={{
                 "aria-label": "change date"
               }}
             />
           </MuiPickersUtilsProvider>
+        </Grid>
+        <Grid item xs={12} sm={6}>
+          <SelectField
+            handleFieldChange={handleFieldChange}
+            values={values.status}
+            label="Status"
+            name="status"
+            menuItems={projectStatuses}
+          />
         </Grid>
       </Grid>
     </Grid>

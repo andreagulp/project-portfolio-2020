@@ -38,7 +38,7 @@ function ProjectCard({ project }) {
   const { title, description, brand, team, _id } = project;
 
   return (
-    <Grid item xs={12} sm={6} md={4}>
+    <Grid item xs={12} sm={6} md={4} lg={4} xl={4}>
       <Card className={classes.root}>
         <CardContent className={classes.card}>
           <Typography

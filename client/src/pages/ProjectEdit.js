@@ -22,10 +22,10 @@ function ProjectEdit(props) {
 
   const {
     values,
-    setValue,
-    selectedDate,
-    handleFieldChange,
-    handleDateChange
+    setValue
+    // selectedDate,
+    // handleFieldChange,
+    // handleDateChange
   } = useForm(initialState);
 
   useEffect(() => {
@@ -36,7 +36,7 @@ function ProjectEdit(props) {
     setValue({
       ...project
     });
-  }, [project]);
+  }, [project, setValue]);
 
   console.log(values);
 
