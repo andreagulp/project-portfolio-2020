@@ -76,8 +76,6 @@ function ProjectCreate({ history }) {
   };
 
   const handleUpdateBenefits = () => {
-    console.log("editedBenefit", editedBenefit);
-
     updateBenefit();
   };
 
@@ -90,10 +88,9 @@ function ProjectCreate({ history }) {
           hours: i.hours
         };
       }),
-      estimatedMvpDate: selectedDate
+      estimatedMvpDate: selectedDate,
+      benefitsFullYear: totHours
     };
-    console.log("newProject", newProject);
-
     dispatch(addProject(newProject));
     history.push("/projects");
   };

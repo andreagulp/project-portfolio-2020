@@ -56,6 +56,7 @@ function useForm(initialMarketHours) {
   return {
     newMarketHours,
     benefitsByMkt,
+    setBenefitsByMkt,
     handleFieldMktHoursChange,
     addBenefit,
     removeBenefit,

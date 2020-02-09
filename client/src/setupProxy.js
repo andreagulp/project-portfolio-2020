@@ -9,6 +9,13 @@ module.exports = function(app) {
     })
   );
   app.use(
+    "/api/projects",
+    proxy({
+      target: "http://localhost:5000",
+      changeOrigin: true
+    })
+  );
+  app.use(
     "/auth/google",
     proxy({
       target: "http://localhost:5000",

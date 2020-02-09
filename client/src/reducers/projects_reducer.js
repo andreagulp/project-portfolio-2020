@@ -1,4 +1,4 @@
-import { FETCH_PROJECTS } from "../actions/types";
+import { FETCH_PROJECTS, UPDATE_PROJECT } from "../actions/types";
 
 const initialState = [
   {
@@ -22,6 +22,8 @@ export default function(state = initialState, action) {
   switch (action.type) {
     case FETCH_PROJECTS:
       return action.payload;
+    case UPDATE_PROJECT:
+      return state;
     default:
       return state;
   }

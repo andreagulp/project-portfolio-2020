@@ -66,8 +66,6 @@ function ProjectFinancial({
     setOpenDialog(false);
   };
 
-  console.log("benefitsByMkt", benefitsByMkt);
-
   return (
     <>
       {/* <Grid container spacing={3}> */}

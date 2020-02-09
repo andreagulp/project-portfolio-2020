@@ -14,8 +14,8 @@ const projectSchema = new Schema({
   brand: String,
   benefitsFullYear: Number,
   benefitsByMarket: [marketBenefit],
-  estimatedMvpDate: Date,
-  deployementDate: Date
+  estimatedMvpDate: Date
+  // deployementDate: Date
 });
 
 mongoose.model("projects", projectSchema);

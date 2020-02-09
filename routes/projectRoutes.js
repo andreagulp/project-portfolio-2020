@@ -43,4 +43,27 @@ module.exports = app => {
         });
       });
   });
+
+  ///////////
+  app.patch("/api/projects/update/:projectId", (req, res, next) => {
+    const id = req.params.projectId;
+    Project.update(
+      { _id: id },
+      {
+        $set: {
+          ...req.body
+        }
+      }
+    )
+      .exec()
+      .then(result => {
+        res.status(200).json(result);
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json({
+          error: err
+        });
+      });
+  });
 };

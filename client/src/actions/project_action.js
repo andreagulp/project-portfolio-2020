@@ -1,5 +1,10 @@
 import axios from "axios";
-import { ADD_PROJECT, FETCH_PROJECTS, FETCH_SINGLE_PROJECT } from "./types";
+import {
+  ADD_PROJECT,
+  FETCH_PROJECTS,
+  FETCH_SINGLE_PROJECT,
+  UPDATE_PROJECT
+} from "./types";
 
 export const fetchProjects = () => {
   const request = axios
@@ -33,8 +38,6 @@ export const addProject = project => {
 };
 
 export const fetchSingleProject = projectId => {
-  // console.log("projectId from project action", projectId);
-
   const request = axios
     .get(`/api/projects/${projectId}`)
     .then(response => {
@@ -47,6 +50,23 @@ export const fetchSingleProject = projectId => {
 
   return {
     type: FETCH_SINGLE_PROJECT,
+    payload: request
+  };
+};
+
+export const updateProject = (projectId, newProject) => {
+  const request = axios
+    .patch(`/api/projects/update/${projectId}`, newProject)
+    .then(response => {
+      return response.data;
+    })
+    .catch(error => {
+      console.log(error);
+      return error;
+    });
+
+  return {
+    type: UPDATE_PROJECT,
     payload: request
   };
 };
