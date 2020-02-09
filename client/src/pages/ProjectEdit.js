@@ -14,7 +14,8 @@ import ProjectFinancial from "../components/form/ProjectFinancial";
 
 const useStyles = makeStyles(theme => ({
   button: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2),
     float: "right"
   }
 }));
@@ -46,8 +47,12 @@ function ProjectEdit(props) {
     values,
     setValue,
     selectedDate,
+    setSelectedDate,
     handleFieldChange,
-    handleDateChange
+    handleDateChange,
+    selectedDeploymentDate,
+    setSelectedDeploymentDate,
+    handleDeploymentDateChange
   } = useForm(initialState);
 
   const {
@@ -73,6 +78,10 @@ function ProjectEdit(props) {
       ...project
     });
     setBenefitsByMkt(project.benefitsByMarket);
+
+    setSelectedDate(project.estimatedMvpDate);
+
+    setSelectedDeploymentDate(project.deployementDate);
   }, [project, setValue, setBenefitsByMkt]);
 
   //////
@@ -100,10 +109,6 @@ function ProjectEdit(props) {
   };
 
   const handleUpdateProject = () => {
-    console.log("values", values._id);
-    // console.log("benefitsByMkt", benefitsByMkt);
-    // console.log("selectedDate", selectedDate);
-
     const newProject = {
       ...values,
       benefitsByMarket: benefitsByMkt.map(i => {
@@ -113,6 +118,7 @@ function ProjectEdit(props) {
         };
       }),
       estimatedMvpDate: selectedDate,
+      deployementDate: selectedDeploymentDate,
       benefitsFullYear: totHours
     };
     console.log("newProject", newProject);
@@ -128,6 +134,8 @@ function ProjectEdit(props) {
         selectedDate={selectedDate}
         handleFieldChange={handleFieldChange}
         handleDateChange={handleDateChange}
+        handleDeploymentDateChange={handleDeploymentDateChange}
+        selectedDeploymentDate={selectedDeploymentDate}
       />
 
       <Grid item xs={12} sm={6}>
@@ -152,6 +160,15 @@ function ProjectEdit(props) {
             className={classes.button}
           >
             Update Project
+          </Button>
+
+          <Button
+            onClick={() => props.history.push("/projects")}
+            variant="outlined"
+            color="default"
+            className={classes.button}
+          >
+            Back
           </Button>
         </div>
       </Grid>

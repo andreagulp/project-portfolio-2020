@@ -25,7 +25,9 @@ function ProjectInfo({
   values,
   selectedDate,
   handleFieldChange,
-  handleDateChange
+  handleDateChange,
+  handleDeploymentDateChange,
+  selectedDeploymentDate
 }) {
   const classes = useStyles();
   // Start build items for dropdown menu teams, project ,manager list, devs list, brand
@@ -60,6 +62,15 @@ function ProjectInfo({
         <Typography variant="h4" gutterBottom className={classes.headerName}>
           Project Info
         </Typography>
+      </Grid>
+      <Grid item xs={12} sm={12}>
+        <SelectField
+          handleFieldChange={handleFieldChange}
+          values={values.status}
+          label="Status"
+          name="status"
+          menuItems={projectStatuses}
+        />
       </Grid>
 
       <Grid container spacing={3}>
@@ -148,14 +159,23 @@ function ProjectInfo({
           </MuiPickersUtilsProvider>
         </Grid>
         <Grid item xs={12} sm={6}>
-          <SelectField
-            handleFieldChange={handleFieldChange}
-            values={values.status}
-            label="Status"
-            name="status"
-            menuItems={projectStatuses}
-          />
+          <MuiPickersUtilsProvider utils={DateFnsUtils}>
+            <KeyboardDatePicker
+              margin="normal"
+              name="deploymentDate"
+              id="date-picker-dialog1"
+              label="Deployment Date"
+              format="dd/MMM/yyyy"
+              value={selectedDeploymentDate}
+              onChange={handleDeploymentDateChange}
+              fullWidth
+              KeyboardButtonProps={{
+                "aria-label": "change date"
+              }}
+            />
+          </MuiPickersUtilsProvider>
         </Grid>
+        {/* add deployement date */}
       </Grid>
     </Grid>
   );

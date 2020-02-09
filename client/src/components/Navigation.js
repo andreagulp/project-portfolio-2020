@@ -33,22 +33,22 @@ const menuConfig = [
     url: "/projects",
     icon: <AccountTreeIcon />,
     text: "Projects"
-  },
-  {
-    url: "/myprofile",
-    icon: <AccountCircleTwoToneIcon />,
-    text: "My Profile"
-  },
-  {
-    url: "/employees",
-    icon: <GroupTwoToneIcon />,
-    text: "Employees"
-  },
-  {
-    url: "/teams",
-    icon: <GroupWorkTwoToneIcon />,
-    text: "Teams"
   }
+  // {
+  //   url: "/myprofile",
+  //   icon: <AccountCircleTwoToneIcon />,
+  //   text: "My Profile"
+  // },
+  // {
+  //   url: "/employees",
+  //   icon: <GroupTwoToneIcon />,
+  //   text: "Employees"
+  // },
+  // {
+  //   url: "/teams",
+  //   icon: <GroupWorkTwoToneIcon />,
+  //   text: "Teams"
+  // }
 ];
 
 const Navigation = ({ openNav, toggleDrawer }) => {

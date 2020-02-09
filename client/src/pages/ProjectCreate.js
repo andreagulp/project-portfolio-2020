@@ -15,12 +15,13 @@ import ProjectFinancial from "../components/form/ProjectFinancial";
 
 const useStyles = makeStyles(theme => ({
   button: {
-    marginTop: theme.spacing(1),
+    marginTop: theme.spacing(2),
+    marginLeft: theme.spacing(2),
     float: "right"
   }
 }));
 
-function ProjectCreate({ history }) {
+function ProjectCreate(props) {
   const classes = useStyles();
   const dispatch = useDispatch();
 
@@ -40,9 +41,14 @@ function ProjectCreate({ history }) {
     hours: 0
   };
 
-  const { values, selectedDate, handleFieldChange, handleDateChange } = useForm(
-    initialState
-  );
+  const {
+    values,
+    selectedDate,
+    handleFieldChange,
+    handleDateChange,
+    selectedDeploymentDate,
+    handleDeploymentDateChange
+  } = useForm(initialState);
 
   const {
     newMarketHours,
@@ -89,10 +95,11 @@ function ProjectCreate({ history }) {
         };
       }),
       estimatedMvpDate: selectedDate,
+      deployementDate: selectedDeploymentDate,
       benefitsFullYear: totHours
     };
     dispatch(addProject(newProject));
-    history.push("/projects");
+    props.history.push("/projects");
   };
 
   return (
@@ -102,6 +109,8 @@ function ProjectCreate({ history }) {
         selectedDate={selectedDate}
         handleFieldChange={handleFieldChange}
         handleDateChange={handleDateChange}
+        handleDeploymentDateChange={handleDeploymentDateChange}
+        selectedDeploymentDate={selectedDeploymentDate}
       />
 
       <Grid item xs={12} sm={6}>
@@ -128,6 +137,14 @@ function ProjectCreate({ history }) {
             className={classes.button}
           >
             Add Project
+          </Button>
+          <Button
+            onClick={() => props.history.push("/projects")}
+            variant="outlined"
+            color="default"
+            className={classes.button}
+          >
+            Back
           </Button>
         </div>
       </Grid>

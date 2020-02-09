@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 function useForm(initialState) {
   const [values, setValue] = useState(initialState);
-  const [selectedDate, setSelectedDate] = React.useState(new Date());
+  const [selectedDate, setSelectedDate] = useState(new Date());
+  const [selectedDeploymentDate, setSelectedDeploymentDate] = useState(null);
 
   const handleFieldChange = e => {
     e.preventDefault();
@@ -15,13 +16,20 @@ function useForm(initialState) {
   const handleDateChange = date => {
     setSelectedDate(date);
   };
+  const handleDeploymentDateChange = date => {
+    setSelectedDeploymentDate(date);
+  };
 
   return {
     values,
     setValue,
     selectedDate,
+    setSelectedDate,
     handleFieldChange,
-    handleDateChange
+    handleDateChange,
+    selectedDeploymentDate,
+    setSelectedDeploymentDate,
+    handleDeploymentDateChange
   };
 }
 
