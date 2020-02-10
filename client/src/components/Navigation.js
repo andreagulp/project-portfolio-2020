@@ -8,10 +8,10 @@ import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
 import { Link } from "react-router-dom";
 
-import AccountCircleTwoToneIcon from "@material-ui/icons/AccountCircleTwoTone";
+// import AccountCircleTwoToneIcon from "@material-ui/icons/AccountCircleTwoTone";
 import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
-import GroupWorkTwoToneIcon from "@material-ui/icons/GroupWorkTwoTone";
-import GroupTwoToneIcon from "@material-ui/icons/GroupTwoTone";
+// import GroupWorkTwoToneIcon from "@material-ui/icons/GroupWorkTwoTone";
+// import GroupTwoToneIcon from "@material-ui/icons/GroupTwoTone";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
 
 const useStyles = makeStyles(theme => ({

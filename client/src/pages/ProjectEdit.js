@@ -82,7 +82,13 @@ function ProjectEdit(props) {
     setSelectedDate(project.estimatedMvpDate);
 
     setSelectedDeploymentDate(project.deployementDate);
-  }, [project, setValue, setBenefitsByMkt]);
+  }, [
+    project,
+    setValue,
+    setBenefitsByMkt,
+    setSelectedDate,
+    setSelectedDeploymentDate
+  ]);
 
   //////
 

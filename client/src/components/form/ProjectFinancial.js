@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Paper from "@material-ui/core/Paper";
-import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
 import List from "@material-ui/core/List";
 import ListItem from "@material-ui/core/ListItem";
@@ -29,9 +27,6 @@ const useStyles = makeStyles(theme => ({
   headerFinancial: {
     paddingTop: theme.spacing(2)
   },
-  // paper: {
-  //   // padding: theme.spacing(1)
-  // },
   button: {
     // marginTop: theme.spacing(2)
     float: "right"

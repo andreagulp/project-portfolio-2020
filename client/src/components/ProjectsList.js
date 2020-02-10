@@ -1,26 +1,17 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import { useDispatch, useSelector } from "react-redux";
 import Grid from "@material-ui/core/Grid";
 
-import { fetchProjects } from "../actions/project_action";
 import ProjectCard from "./ProjectCard";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 10
+    // marginTop: 10
   }
 }));
 
-function ProjectList() {
+function ProjectsList({ projects }) {
   const classes = useStyles();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchProjects());
-  }, [dispatch]);
-
-  const projects = useSelector(state => state.projects);
 
   return (
     <Grid container spacing={3} className={classes.root}>
@@ -31,4 +22,4 @@ function ProjectList() {
   );
 }
 
-export default ProjectList;
+export default ProjectsList;
