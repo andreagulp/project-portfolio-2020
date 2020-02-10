@@ -32,7 +32,7 @@ function ProjectsTable({ projectsForTable }) {
   const data = projectsForTable;
   return (
     <MUIDataTable
-      title={"ACME Employee list"}
+      title={"Kaizen Projects"}
       data={data}
       columns={columns}
       options={options}
