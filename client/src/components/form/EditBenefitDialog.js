@@ -3,7 +3,6 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-// import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import SelectField from "./SelectField";
 import { markets } from "../../assets/formConfig";
@@ -24,9 +23,7 @@ function EditBenefitDialog({
       aria-labelledby="alert-dialog-title"
       aria-describedby="alert-dialog-description"
     >
-      <DialogTitle id="alert-dialog-title">
-        {"Use Google's location service?"}
-      </DialogTitle>
+      <DialogTitle id="alert-dialog-title">{"Update Benefits"}</DialogTitle>
       <DialogContent>
         <Grid container spacing={3}>
           <Grid item xs={8} sm={8}>

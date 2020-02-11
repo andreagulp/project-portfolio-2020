@@ -6,7 +6,7 @@ export const getProjectForTable = createSelector([getProjects], projects => {
   let projectsForTable = [];
 
   projects.map(project => {
-    projectsForTable = [
+    return (projectsForTable = [
       ...projectsForTable,
       [
         project.title,
@@ -19,7 +19,7 @@ export const getProjectForTable = createSelector([getProjects], projects => {
         project.benefitsFullYear,
         project.estimatedMvpDate
       ]
-    ];
+    ]);
   });
   return projectsForTable;
 });
