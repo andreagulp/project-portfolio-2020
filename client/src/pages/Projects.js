@@ -18,7 +18,12 @@ import { getProjectForTable } from "../selectors/projectTable_selector";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginTop: 10
+    marginTop: 10,
+    display: "flex"
+  },
+  buttonView: {
+    // alignContent: "flex-end"
+    float: "right"
   },
   button: {
     position: "fixed",
@@ -50,16 +55,31 @@ function Projects() {
   console.log("projectsForTable", projectsForTable);
 
   return (
-    <Grid container spacing={1} className={classes.root}>
+    <Grid
+      container
+      spacing={1}
+      className={classes.root}
+      direction="row"
+      justify="flex-end"
+      alignItems="flex-end"
+    >
       <Grid item xs={12} sm={12}>
         <Tooltip title="Table View">
-          <IconButton aria-label="tableview">
-            <TableChartIcon onClick={toggleTableView} />
+          <IconButton
+            aria-label="tableview"
+            onClick={toggleTableView}
+            className={classes.buttonView}
+          >
+            <TableChartIcon />
           </IconButton>
         </Tooltip>
         <Tooltip title="Card View">
-          <IconButton aria-label="cardview">
-            <DashboardIcon onClick={toggleCardView} />
+          <IconButton
+            aria-label="cardview"
+            onClick={toggleCardView}
+            className={classes.buttonView}
+          >
+            <DashboardIcon />
           </IconButton>
         </Tooltip>
       </Grid>
