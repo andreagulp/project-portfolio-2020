@@ -5,14 +5,8 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import Toolbar from "@material-ui/core/Toolbar";
 import MenuIcon from "@material-ui/icons/Menu";
-// import Login from "./Login";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormGroup from "@material-ui/core/FormGroup";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
-import Brightness4Icon from "@material-ui/icons/Brightness4";
-import Brightness7Icon from "@material-ui/icons/Brightness7";
+import EmojiObjectsIcon from "@material-ui/icons/EmojiObjects";
+import Tooltip from "@material-ui/core/Tooltip";
 
 import Navigation from "./Navigation";
 
@@ -52,15 +46,11 @@ const Header = ({ themeType, toggleThemeType }) => {
           <Typography variant="h6" color="inherit" className={classes.title}>
             Project Portfolio
           </Typography>
-          {themeType === "light" ? (
-            <IconButton aria-label="dark" onClick={toggleThemeType}>
-              <themeType />
-            </IconButton>
-          ) : (
+          <Tooltip title="toggle dark mode" placement="left-start">
             <IconButton aria-label="light" onClick={toggleThemeType}>
-              <Brightness7Icon />
+              <EmojiObjectsIcon />
             </IconButton>
-          )}
+          </Tooltip>
         </Toolbar>
       </AppBar>
       <Navigation openNav={openNav} toggleDrawer={toggleDrawer} />

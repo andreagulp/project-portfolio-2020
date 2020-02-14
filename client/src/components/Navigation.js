@@ -13,6 +13,7 @@ import HomeTwoToneIcon from "@material-ui/icons/HomeTwoTone";
 // import GroupWorkTwoToneIcon from "@material-ui/icons/GroupWorkTwoTone";
 // import GroupTwoToneIcon from "@material-ui/icons/GroupTwoTone";
 import AccountTreeIcon from "@material-ui/icons/AccountTree";
+import BarChartTwoToneIcon from "@material-ui/icons/BarChartTwoTone";
 
 const useStyles = makeStyles(theme => ({
   list: {
@@ -33,12 +34,12 @@ const menuConfig = [
     url: "/projects",
     icon: <AccountTreeIcon />,
     text: "Projects"
+  },
+  {
+    url: "/dashboard",
+    icon: <BarChartTwoToneIcon />,
+    text: "Dashboard"
   }
-  // {
-  //   url: "/myprofile",
-  //   icon: <AccountCircleTwoToneIcon />,
-  //   text: "My Profile"
-  // },
   // {
   //   url: "/employees",
   //   icon: <GroupTwoToneIcon />,

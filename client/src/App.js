@@ -19,6 +19,7 @@ import Teams from "./pages/Teams";
 import Projects from "./pages/Projects";
 import ProjectCreate from "./pages/ProjectCreate";
 import ProjectEdit from "./pages/ProjectEdit";
+import Dashboard from "./pages/Dashboard";
 
 const App = () => {
   const [themeType, setThemeType] = useState("light");
@@ -60,7 +61,7 @@ const App = () => {
                   component={ProjectEdit}
                 />
                 <Route path="/projects" component={Projects} />
-                <Route path="/myprofile" component={MyProfile} />
+                <Route path="/dashboard" component={Dashboard} />
                 <Route path="/employees" component={Employees} />
                 <Route path="/teams" component={Teams} />
                 <Route path="/" component={Home} />
