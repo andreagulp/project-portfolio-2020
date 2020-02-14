@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-function ChartByMarket({ data, title }) {
+function StackedBarChart({ data, title }) {
   const classes = useStyles();
 
   return (
@@ -47,4 +47,4 @@ function ChartByMarket({ data, title }) {
   );
 }
 
-export default ChartByMarket;
+export default StackedBarChart;
