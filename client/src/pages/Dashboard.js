@@ -12,6 +12,8 @@ import { selectMetricsByBrand } from "../selectors/brandMetrics_selector";
 import { fetchProjects } from "../actions/project_action";
 import Grid from "@material-ui/core/Grid";
 
+import CardSummaryMetrics from "../components/metrics/CardSummaryMetrics";
+
 function Dashboard() {
   const dispatch = useDispatch();
 
@@ -35,6 +37,11 @@ function Dashboard() {
 
   return (
     <Grid container spacing={3}>
+      <CardSummaryMetrics
+        totalBacklog={totalBacklog}
+        totalInProgress={totalInProgress}
+        totalDeployed={totalDeployed}
+      />
       <StackedBarChart
         title="Hours by Market and Status"
         data={chartByMarketData.dataChart}
